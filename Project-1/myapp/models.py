@@ -6,7 +6,7 @@ class Contact(models.Model):
     email=models.EmailField()
     mobile=models.PositiveIntegerField()
     remark=models.TextField()
-
+    
     def __str__(self):
         return self.name
 class User(models.Model):
