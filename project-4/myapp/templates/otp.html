@@ -1,0 +1,74 @@
+{% extends 'header.html' %}
+{% block content %}
+
+<style>
+  body {
+    background: linear-gradient(to right, #74ebd5, #9face6);
+  }
+
+  .otp-box {
+    background: #ffffff;
+    padding: 30px;
+    margin-top: 70px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  }
+
+  .form-title {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 25px;
+  }
+
+  .btn-3d {
+    background-color: #5cb85c;
+    color: #fff;
+    border: none;
+    padding: 10px 30px;
+    font-size: 16px;
+    border-radius: 5px;
+    box-shadow: 0 6px #3d8b3d;
+    transition: 0.2s;
+  }
+
+  .btn-3d:hover {
+    background-color: #4cae4c;
+  }
+
+  .btn-3d:active {
+    box-shadow: 0 3px #3d8b3d;
+    transform: translateY(3px);
+  }
+</style>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="otp-box">
+
+        <h3 class="form-title">Verify OTP</h3>
+
+        {% if msg %}
+          <div class="alert alert-info">{{ msg }}</div>
+        {% endif %}
+
+        <form method="post" action="{% url 'otp' %}">
+          {% csrf_token %}
+
+          <div class="form-group">
+            <label>Enter OTP</label>
+            <input type="text" name="otp" class="form-control" placeholder="Enter 6-digit OTP" required>
+          </div>
+
+          <div class="text-center">
+            <button type="submit" class="btn btn-3d">Verify</button>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

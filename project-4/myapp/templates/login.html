@@ -8,7 +8,104 @@
     <title>my site</title>
 </head>
 <body>
-    <h3>Login</h3>
+    <!DOCTYPE html>
+<html>
+<head>
+  <title>SignUp Form</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- Bootstrap 3 CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+  <!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+  <!-- Bootstrap 3 JS -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <style>
+    body {
+      background: linear-gradient(to right, #74ebd5, #9face6);
+    }
+.message-box{
+    background: #ffffffb7; /* pure white box */
+    padding: 30px;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1); /* lighter shadow for soft look */
+}
+    .contact-box {
+  background: #ffffff; /* pure white box */
+  padding: 30px;
+  margin-top: 70px;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1); /* lighter shadow for soft look */
+}
+
+    .form-title {
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 25px;
+    }
+
+    .btn-3d {
+      background-color: #5cb85c;
+      color: #fff;
+      border: none;
+      padding: 10px 30px;
+      font-size: 16px;
+      border-radius: 5px;
+      box-shadow: 0 6px #3d8b3d;
+      transition: 0.2s;
+    }
+
+    .btn-3d:hover {
+      background-color: #4cae4c;
+    }
+
+    .btn-3d:active {
+      box-shadow: 0 3px #3d8b3d;
+      transform: translateY(3px);
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="contact-box">
+        
+        <h3 class="form-title">Login</h3>
+        {% if msg %}
+              <div class="alert alert-success mt-3">{{ msg }}</div>
+            {% endif %}
+        <form method="post" action="{% url 'login' %}">
+          {% csrf_token %}
+
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" name="email"class="form-control" placeholder="Enter your email">
+          </div>
+
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" name="password" class="form-control" placeholder="Enter your password">
+            <a href="{% url 'forgot_password' %}" class="pull-right">Forgot Password?</a>
+          </div>
+  
+          <div class="text-center">
+            <button type="submit" class="btn btn-3d">Submit</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
 </body>
 </html>
 {% endblock %}

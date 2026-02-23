@@ -28,8 +28,17 @@
       <li><a href="{% url 'contact' %}">Contact</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
+      {% if request.session.email %}
+        <li><a href="{% url 'change_password' %}"><span class="glyphicon glyphicon-lock"></span> Change Password</a></li>
+        <li><a href="{% url 'profile' %}"><span class="glyphicon glyphicon-user"></span> {{request.session.name}}</a></li>
+        <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+      {% endif %}
+      {% if request.session.email %}
+      {% else %}
+
       <li><a href="{% url 'signup' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
       <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      {% endif %}
     </ul>
   </div>
 </nav>
