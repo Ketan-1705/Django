@@ -30,6 +30,22 @@
 
     <!-- Template Stylesheet -->
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <style>
+        
+.profile-circle {
+    width: 50px;       /* Change size here */
+    height: 50px;      /* Must be same as width */
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #ddd;
+}
+
+.profile-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+</style>
 </head>
 
 <body>
@@ -127,6 +143,34 @@
             </div>
             <div class="col-md-4 col-lg-3 text-center text-lg-end">
     <div class="d-inline-flex align-items-center">
+
+    {% if request.session.email %}
+        <!-- User Profile -->
+        <a href="{% url 'profile' %}" class="text-muted d-flex flex-column align-items-center justify-content-center me-3">
+
+    <div class="profile-circle">
+        <img src="{{ request.session.profile_pic }}" alt="Profile">
+    </div>
+
+    <small class="mt-1 text-dark">{{ user.fname }} {{ user.lname }}</small>
+</a>
+
+        <!-- Logout -->
+        <a href="{% url 'logout' %}" class="text-muted d-flex flex-column align-items-center justify-content-center me-3">
+            <span class="rounded-circle btn-md-square border d-flex align-items-center justify-content-center p-3">
+                <i class="fas fa-sign-out-alt"></i>
+            </span>
+            <small class="mt-1 text-dark">Logout</small>
+        </a>
+
+        <!-- Cart -->
+        <a href="#" class="text-muted d-flex flex-column align-items-center justify-content-center">
+            <span class="rounded-circle btn-md-square border d-flex align-items-center justify-content-center p-3">
+                <i class="fas fa-shopping-cart"></i>
+            </span>
+            <small class="mt-1 text-dark">$0.00</small>
+        </a>
+    {%else%}
 <!-- Sign Up -->
         <a href="{% url 'signup' %}" class="text-muted d-flex flex-column align-items-center justify-content-center me-3">
             <span class="rounded-circle btn-md-square border d-flex align-items-center justify-content-center p-3">
@@ -151,11 +195,12 @@
             </span>
             <small class="mt-1 text-dark">$0.00</small>
         </a>
-
+    {% endif %}
     </div>
 </div>
         </div>
     </div>
+    
     <!-- Topbar End -->
 
 

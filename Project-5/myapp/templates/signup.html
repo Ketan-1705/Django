@@ -16,7 +16,6 @@
 <div class="container-fluid page-header py-5">
     <h1 class="text-center text-white display-6 wow fadeInUp" data-wow-delay="0.1s">Sign Up</h1>
     <ol class="breadcrumb justify-content-center mb-0 wow fadeInUp" data-wow-delay="0.3s">
-        
     </ol>
 </div>
 <!-- Single Page Header End -->
@@ -28,49 +27,71 @@
             <div class="col-lg-6">
                 <div class="p-5 bg-light rounded shadow-sm wow fadeInUp" data-wow-delay="0.1s">
                     <h4 class="text-primary mb-4 text-center">Create Your Account</h4>
-                    <form method="post" action="">
+                    <form method="post" action="{% url 'signup' %}" enctype="multipart/form-data">
+                        {% if msg %}
+                            <div class="alert alert-danger">{{ msg }}</div>
+                        {% endif %}
                         {% csrf_token %}
                         <div class="row g-3">
+                            <div class="row g-3">
+
+                            <!-- User Type -->
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <select name="user_type" class="form-select" id="user_type" required>
+                                        <option value="" selected disabled>Select User Type</option>
+                                        <option value="buyer">Buyer</option>
+                                        <option value="seller">Seller</option>
+                                    </select>
+                                    <label for="user_type">Register As</label>
+                                </div>
+                            </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="first_name" name="first_name" placeholder="First Name" required>
+                                    <input type="text" name="fname" class="form-control" id="first_name" name="first_name" placeholder="First Name" required>
                                     <label for="first_name">First Name</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last Name" required>
+                                    <input type="text" name="lname" class="form-control" id="last_name" name="last_name" placeholder="Last Name" required>
                                     <label for="last_name">Last Name</label>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                                    <input type="email"  name="email" class="form-control" id="email" name="email" placeholder="Email" required>
                                     <label for="email">Email</label>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="address" name="address" placeholder="Address" required>
+                                    <input type="text" name="address" class="form-control" id="address" name="address" placeholder="Address" required>
                                     <label for="address">Address</label>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
-                                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone Number" required>
+                                    <input type="tel" name="phone" class="form-control" id="phone" name="phone" placeholder="Phone Number" required>
                                     <label for="phone">Phone Number</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                                    <input type="password" name="password" class="form-control" id="password" name="password" placeholder="Password" required>
                                     <label for="password">Password</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required>
+                                    <input type="password" name="c_password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required>
                                     <label for="confirm_password">Confirm Password</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input type="file" name="profile_pic" class="form-control" id="profile_image" name="profile_image" accept="image/*" required>
+                                    <label for="profile_image">Upload Profile Image</label>
                                 </div>
                             </div>
                             <div class="col-12">
@@ -90,9 +111,7 @@
 <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 <!-- Wow.js -->
 <script src="{% static 'js/wow.min.js' %}"></script>
-<script>
-    new WOW().init();
-</script>
+
 </body>
 </html>
 {% endblock %}

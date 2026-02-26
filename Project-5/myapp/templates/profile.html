@@ -1,0 +1,154 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container-fluid page-header py-5">
+    <h1 class="text-center text-white display-6">Update Profile</h1>
+</div>
+
+<div class="container-fluid auth py-5">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="p-5 bg-light rounded shadow-sm">
+                    <h4 class="text-primary mb-4 text-center">Edit Your Profile</h4>
+                    <form method="post" action="{% url 'profile' %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        {% if msg %}
+                            <div class="alert alert-success">{{ msg }}</div>
+                        {% endif %}
+
+                        <div class="row g-3">
+
+                            <!-- Profile Image Preview -->
+                            <div class="col-12 text-center">
+                                {% if request.session.profile_pic %}
+                                    <img id="previewImage"
+                                         src="{{ request.session.profile_pic }}"
+                                         class=" mb-3"
+                                         width="120" height="120"
+                                         style="object-fit: cover;">
+                                {% else %}
+                                    <img id="previewImage"
+                                         src="{% static 'img/default-profile.png' %}"
+                                         class="rounded-circle mb-3"
+                                         width="120" height="120"
+                                         style="object-fit: cover;">
+                                {% endif %}
+
+                                <input type="file"
+                                       name="profile_pic"
+                                       class="form-control"
+                                       accept="image/*"
+                                       onchange="previewImage(event)">
+                            </div>
+
+                            <!-- First Name -->
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" name="fname"
+                                           class="form-control"
+                                           value="{{ user.fname }}"
+                                            required>
+                                    <label>First Name</label>
+                                </div>
+                            </div>
+
+                            <!-- Last Name -->
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" name="lname"
+                                           class="form-control"
+                                           value="{{ user.lname }}"
+                                            required>
+                                    <label>Last Name</label>
+                                </div>
+                            </div>
+
+                            <!-- Email (readonly) -->
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input type="email" name="email"
+                                           class="form-control"
+                                           value="{{ user.email }}"
+                                           readonly>
+                                    <label>Email</label>
+                                </div>
+                            </div>
+
+                            <!-- Address -->
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input type="text" name="address"
+                                           class="form-control"
+                                           value="{{ user.address }}"
+                                            required>
+                                    <label>Address</label>
+                                </div>
+                            </div>
+
+                            <!-- Phone -->
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input type="tel" name="phone"
+                                           class="form-control"
+                                           value="{{ user.phone }}"
+                                           required>
+                                    <label>Phone Number</label>
+                                </div>
+                            </div>
+
+                           <hr class="my-4">
+
+                            <div class="col-12">
+                                <a href="{% url 'change_password' %}"
+                                class="btn btn-outline-danger w-100 py-2">
+                                    Change Password
+                                </a>
+                            </div>
+                            <!-- Submit Button -->
+                            <div class="col-12">
+                                <button type="submit"
+                                        class="btn btn-primary w-100 py-3">
+                                    Update Profile
+                                </button>
+                            </div>
+
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CSS -->
+<style>
+.toggle-password {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+</style>
+
+<!-- JS -->
+<script>
+function togglePassword(id) {
+    const field = document.getElementById(id);
+    field.type = field.type === "password" ? "text" : "password";
+}
+
+function previewImage(event) {
+    const reader = new FileReader();
+    reader.onload = function() {
+        document.getElementById("previewImage").src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+}
+</script>
+
+{% endblock %}

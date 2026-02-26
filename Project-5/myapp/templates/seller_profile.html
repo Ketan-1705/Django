@@ -1,0 +1,86 @@
+{% load static %}
+{% extends 'seller_header.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>Profile - Seller Dashboard</title>
+    
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+
+<!-- ================= HERO ================= -->
+<section class="bg-primary text-white text-center py-5">
+    <div class="container py-4">
+        <h1 class="display-5 fw-bold">Your Profile</h1>
+        <p class="lead mt-3">View and update your account information</p>
+    </div>
+</section>
+
+<!-- ================= PROFILE CONTENT ================= -->
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+
+            <div class="col-md-6">
+                <div class="card shadow-sm border-0 p-4">
+
+                    <div class="text-center mb-4">
+                        <img src="{{ user.profile_pic.url }}"
+                             class="rounded-circle mb-3"
+                             width="120" height="120"
+                             style="object-fit: cover;">
+                        <h3>{{ user.fname }} {{ user.lname }}</h3>
+                        <p class="text-muted">{{ user.email }}</p>
+                    </div>
+
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="fname" class="form-label">First Name</label>
+                            <input type="text" class="form-control" id="fname" name="fname" value="{{ user.fname }}">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="lname" class="form-label">Last Name</label>
+                            <input type="text" class="form-control" id="lname" name="lname" value="{{ user.lname }}">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" value="{{ user.email }}">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="profile_pic" class="form-label">Profile Picture</label>
+                            <input type="file" class="form-control" id="profile_pic" name="profile_pic">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">Update Profile</button>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="bg-dark text-white text-center py-4">
+    <div class="container">
+        <p class="mb-0">© 2026 Seller Panel | All Rights Reserved</p>
+    </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>
+{% endblock %}
