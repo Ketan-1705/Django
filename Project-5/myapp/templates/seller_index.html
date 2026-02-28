@@ -1,4 +1,6 @@
+{% extends 'seller_header.html' %}
 {% load static %}
+{% block content1 %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,59 +18,11 @@
 
 <body>
 
-<!-- ================= NAVBAR ================= -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm py-3">
-    <div class="container">
-        <a class="navbar-brand fw-bold" href="#">SellerPanel</a>
-
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto align-items-center">
-
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">Dashboard</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="">Add Product</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="">Products</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="">Orders</a>
-                </li>
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" data-bs-toggle="dropdown">
-                        <img src="{{ session.profile_pic }}"
-                             class="rounded-circle me-2"
-                             width="35" height="35"
-                             style="object-fit: cover;">
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="{% url 'seller_profile' %}">Profile</a></li>
-                        <li><a class="dropdown-item" href="{% url 'change_password' %}">Change Password</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item text-danger" href="{% url 'logout' %}">Logout</a></li>
-                    </ul>
-                </li>
-
-            </ul>
-        </div>
-    </div>
-</nav>
-
 
 <!-- ================= HERO SECTION ================= -->
 <section class="bg-primary text-white text-center py-5">
     <div class="container py-4">
-        <h1 class="display-5 fw-bold">Welcome Back, {{ user.fname }} {{ user.lname }}</h1>
+        <h1 class="display-5 fw-bold">Welcome , {{ user.fname }} {{ user.lname }}</h1>
         <p class="lead mt-3">Manage your store, track orders, and grow your business easily.</p>
         <a href="{% url 'add_product' %}" class="btn btn-light btn-lg mt-3 px-4">
             Add New Product
@@ -80,12 +34,12 @@
 <!-- ================= STATS SECTION ================= -->
 <section class="py-5">
     <div class="container">
-        <div class="row text-center g-4">
+        <div class="row text-center g-7">
 
             <div class="col-md-4">
                 <div class="card shadow-sm border-0 p-4">
                     <i class="fa fa-box fa-2x text-primary mb-3"></i>
-                    <h3>8</h3>
+                    <h3>{{ product_count }}</h3>
                     <p class="text-muted">Total Products</p>
                 </div>
             </div>
@@ -93,7 +47,7 @@
             <div class="col-md-4">
                 <div class="card shadow-sm border-0 p-4">
                     <i class="fa fa-shopping-cart fa-2x text-success mb-3"></i>
-                    <h3></h3>
+                    <h3>7</h3>
                     <p class="text-muted">Total Orders</p>
                 </div>
             </div>
@@ -101,7 +55,7 @@
             <div class="col-md-4">
                 <div class="card shadow-sm border-0 p-4">
                     <i class="fa fa-dollar-sign fa-2x text-danger mb-3"></i>
-                    <h3>₹ 45000</h3>
+                    <h3>₹45000</h3>
                     <p class="text-muted">Total Sales</p>
                 </div>
             </div>
@@ -138,17 +92,6 @@
     </div>
 </section>
 
-
-<!-- ================= FOOTER ================= -->
-<footer class="bg-dark text-white text-center py-4">
-    <div class="container">
-        <p class="mb-0">© 2026 Seller Panel | All Rights Reserved</p>
-    </div>
-</footer>
-
-
-<!-- Bootstrap JS -->
-<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-
 </body>
 </html>
+{% endblock %}

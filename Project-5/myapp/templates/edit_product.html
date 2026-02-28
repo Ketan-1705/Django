@@ -1,0 +1,127 @@
+{% extends 'seller_header.html' %}
+{% load static %}
+
+{% block content1 %}
+
+<div class="container mt-5">
+    <div class="card shadow-lg border-0">
+        
+        <div class="card-header bg-dark text-white py-3">
+            <h4 class="mb-0 text-white">
+                <i class="fa-solid fa-layer-group me-2"></i> Edit Product
+            </h4>
+        </div>
+
+        <div class="card-body p-4">
+
+            <form method="POST" enctype="multipart/form-data" action="{% url 'edit_product' pid=products.id %}">
+                {% csrf_token %}
+                
+                <div class="row">
+                    
+                    <!-- LEFT SIDE - Current Product Image -->
+                    <div class="col-md-5 text-center mb-4">
+                        <label class="form-label fw-semibold">Current Product Image</label><br>
+                        <img src="{{ products.Product_image.url }}" 
+                             class="img-fluid rounded shadow" 
+                             style="max-height:300px;">
+                    </div>
+
+                    <!-- RIGHT SIDE - Product Details -->
+                    <div class="col-md-7">
+                        
+                        <!-- Product Name -->
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Product Name</label>
+                            <input type="text" name="Product_name" 
+                                   class="form-control" 
+                                   value="{{ products.Product_name }}" required>
+                        </div>
+
+                        <!-- Category -->
+                        <div class="col-md-12 mb-3">
+                        <label class="form-label fw-semibold">Category</label>
+                        <select name="Product_category" class="form-select" required>
+                            {% if products.Product_category == "Laptop" %}
+                                <option>-- Select Category --</option>
+                                <option value="Laptop" selected>Laptop</option>
+                                <option value="Mobile">Mobile</option>
+                                <option value="Headphones">Headphones</option>
+                                <option value="Smart Watch">Smart Watch</option>
+                            {% elif products.Product_category == "Mobile" %}
+                                <option>-- Select Category --</option>
+                                <option value="Laptop">Laptop</option>
+                                <option value="Mobile" selected>Mobile</option>
+                                <option value="Headphones">Headphones</option>
+                                <option value="Smart Watch">Smart Watch</option>
+                            {% elif products.Product_category == "Headphones" %}
+                                <option>-- Select Category --</option>
+                                <option value="Laptop">Laptop</option>
+                                <option value="Mobile">Mobile</option>
+                                <option value="Headphones" selected>Headphones</option>
+                                <option value="Smart Watch">Smart Watch</option>
+                            {% elif products.Product_category == "Smart Watch" %}
+                                <option>-- Select Category --</option>
+                                <option value="Laptop">Laptop</option>
+                                <option value="Mobile">Mobile</option>
+                                <option value="Headphones">Headphones</option>
+                                <option value="Smart Watch" selected>Smart Watch</option>
+                            {% endif %}
+                        </select>
+                    </div>
+
+
+                        <!-- Price -->
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Price</label>
+                            <input type="number" step="0.01" 
+                                   name="Product_price" 
+                                   class="form-control" 
+                                   value="{{ products.Product_price }}" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                        <label class="form-label fw-semibold">Change Product Image</label>
+                        <input type="file" name="Product_image" class="form-control">
+                    </div>
+
+                    </div>
+                </div>
+
+                <hr>
+
+                <!-- Bottom Section -->
+                <div class="row mt-3">
+
+                    <!-- Upload New Image -->
+                    
+
+                    <!-- Description -->
+                    <div class="col-md-12 mb-3">
+                        <label class="form-label fw-semibold">Description</label>
+                        <textarea name="Product_desc" rows="4" 
+                                  class="form-control">{{ products.Product_desc }}</textarea>
+                    </div>
+
+                </div>
+
+                {% if msg %}
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ msg }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                {% endif %}
+
+                <!-- Submit Button -->
+                <div class="d-flex justify-content-end mt-3">
+                    <button type="submit" class="btn btn-dark">
+                        <i class="fa fa-save me-1"></i> Save Product
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

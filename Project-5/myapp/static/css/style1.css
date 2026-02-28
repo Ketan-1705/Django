@@ -1,0 +1,295 @@
+ .profile-img {
+     width: 35px;
+     height: 35px;
+     border-radius: 50%;
+     object-fit: cover;
+ }
+
+ /* Soft Section Background */
+ .product-light {
+     background: #f8f9ff;
+ }
+
+ /* Add Button */
+ .add-product-btn {
+     background: #6366f1;
+     color: white;
+     padding: 8px 18px;
+     border-radius: 8px;
+     text-decoration: none;
+     font-size: 14px;
+     font-weight: 500;
+     transition: 0.3s;
+ }
+
+ .add-product-btn:hover {
+     background: #4f46e5;
+ }
+
+ /* Card */
+ .light-card {
+     background: #ffffff;
+     border-radius: 18px;
+     box-shadow: 0 8px 30px rgba(99, 102, 241, 0.08);
+     overflow: hidden;
+     transition: 0.4s ease;
+     border: 1px solid #eef0ff;
+ }
+
+ .light-card:hover {
+     transform: translateY(-6px);
+     box-shadow: 0 12px 40px rgba(99, 102, 241, 0.15);
+ }
+
+ /* Image */
+ .light-img {
+     height: 220px;
+     overflow: hidden;
+ }
+
+ .light-img img {
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+     transition: 0.4s ease;
+ }
+
+ .light-card:hover img {
+     transform: scale(1.05);
+ }
+
+ /* Title */
+ .light-title {
+     font-weight: 600;
+     margin-bottom: 8px;
+     color: #2d2f48;
+ }
+
+ /* Description */
+ .light-desc {
+     font-size: 14px;
+     color: #6c757d;
+     min-height: 45px;
+ }
+
+ /* Price */
+ .light-price {
+     font-weight: 700;
+     font-size: 16px;
+     color: #6366f1;
+ }
+
+ /* Action Buttons */
+ .light-actions {
+     display: flex;
+     gap: 10px;
+ }
+
+ .edit-light,
+ .delete-light {
+     width: 36px;
+     height: 36px;
+     border-radius: 10px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     text-decoration: none;
+     transition: 0.3s;
+     font-size: 14px;
+ }
+
+ /* Soft Edit */
+ .edit-light {
+     background: #e0e7ff;
+     color: #4f46e5;
+ }
+
+ .edit-light:hover {
+     background: #6366f1;
+     color: white;
+ }
+
+ /* Soft Delete */
+ .delete-light {
+     background: #ffe4e6;
+     color: #dc2626;
+ }
+
+ .delete-light:hover {
+     background: #dc2626;
+     color: white;
+ }
+.light-img {
+    width: 230px;
+    text-align: center;
+    margin: auto;
+}
+/* Background */
+.edit-product-section {
+    background: #f8f9ff;
+}
+
+/* Card */
+.edit-card {
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 12px 35px rgba(99, 102, 241, 0.08);
+    border: 1px solid #eef0ff;
+}
+
+/* Labels */
+.form-label {
+    font-weight: 600;
+    color: #2d2f48;
+}
+
+/* Custom Input */
+.custom-input {
+    border-radius: 10px;
+    border: 1px solid #e4e6ff;
+    padding: 10px 14px;
+    transition: 0.3s;
+}
+
+.custom-input:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+/* Image Preview */
+.preview-img img {
+    width: 120px;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+}
+
+/* Cancel Button */
+.cancel-btn {
+    padding: 8px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    background: #f1f3ff;
+    color: #4f46e5;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.cancel-btn:hover {
+    background: #e0e7ff;
+}
+
+/* Save Button */
+.save-btn {
+    background: #6366f1;
+    color: white;
+    border: none;
+    padding: 9px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.save-btn:hover {
+    background: #4f46e5;
+    transform: translateY(-2px);
+}
+/* Background */
+.view-product-section {
+    background: #f8f9ff;
+}
+
+/* Main Card */
+.view-card {
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(99, 102, 241, 0.08);
+    border: 1px solid #eef0ff;
+}
+
+/* Image */
+.view-img {
+    height: 420px;
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+.view-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.4s ease;
+}
+
+.view-img:hover img {
+    transform: scale(1.05);
+}
+
+/* Title */
+.view-title {
+    font-weight: 700;
+    color: #2d2f48;
+}
+
+/* Category */
+.view-category {
+    font-size: 14px;
+    color: #6c757d;
+}
+
+.view-category span {
+    background: #e0e7ff;
+    color: #4f46e5;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-weight: 500;
+}
+
+/* Price */
+.view-price {
+    font-size: 24px;
+    font-weight: 700;
+    color: #6366f1;
+}
+
+/* Description */
+.view-desc {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.7;
+}
+
+/* Edit Button */
+.edit-premium-btn {
+    background: #6366f1;
+    color: white;
+    padding: 10px 24px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.edit-premium-btn:hover {
+    background: #4f46e5;
+    transform: translateY(-2px);
+}
+
+/* Delete Button */
+.delete-premium-btn {
+    background: #ffe4e6;
+    color: #dc2626;
+    padding: 10px 24px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.delete-premium-btn:hover {
+    background: #dc2626;
+    color: white;
+    transform: translateY(-2px);
+}
+a:hover{
+    color: #ffffff;
+}

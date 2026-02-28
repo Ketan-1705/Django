@@ -1,0 +1,84 @@
+{% extends 'seller_header.html' %}
+{% load static %}
+
+{% block content1 %}
+
+<div class="container mt-5">
+    <div class="card shadow-lg border-0">
+        
+        <div class="card-header bg-dark text-white py-3">
+            <h4 class="mb-0 text-white">
+                <i class="fa-solid fa-layer-group me-2"></i> Add New Product
+            </h4>
+        </div>
+
+        <div class="card-body p-4">
+
+            <form method="POST" enctype="multipart/form-data" action="{% url 'add_product' %}">
+                {% csrf_token %}
+
+                <div class="row">
+
+                    <!-- Product Name -->
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label fw-semibold">Product Name</label>
+                        <input type="text" name="Product_name" class="form-control" placeholder="Enter product name" required>
+                    </div>
+
+                    <!-- Category -->
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label fw-semibold">Category</label>
+                        <select name="Product_category" class="form-select" required>
+                            <option>-- Select Category --</option>
+                            <option value="Laptop">Laptop</option>
+                            <option value="Mobile">Mobile</option>
+                            <option value="Headphones">Headphones</option>
+                            <option value="Smart Watch">Smart Watch</option>
+                        </select>
+                    </div>
+
+                    <!-- Price -->
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label fw-semibold">Price</label>
+                        <input type="number" step="0.01" name="Product_price" class="form-control" placeholder="Enter price" required>
+                    </div>
+
+                    <!-- Stock -->
+                    <!-- <div class="col-md-6 mb-3">
+                        <label class="form-label fw-semibold">Stock Quantity</label>
+                        <input type="number" name="stock" class="form-control" placeholder="Enter stock quantity" required>
+                    </div> -->
+
+                    <!-- Product Image -->
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label fw-semibold">Product Image</label>
+                        <input type="file" name="Product_image" class="form-control" required>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="col-12 mb-3">
+                        <label class="form-label fw-semibold">Description</label>
+                        <textarea name="Product_desc" rows="4" class="form-control" placeholder="Enter product description"></textarea>
+                    </div>
+
+                </div>
+                {% if msg %}
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ msg }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endif %}
+                <!-- Submit Button -->
+                <div class="d-flex justify-content-end mt-3">
+                    <button type="submit" class="btn btn-dark">
+                        <i class="fa fa-save me-1"></i> Save Product
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

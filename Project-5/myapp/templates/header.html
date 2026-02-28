@@ -31,21 +31,239 @@
     <!-- Template Stylesheet -->
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
     <style>
-        
-.profile-circle {
-    width: 50px;       /* Change size here */
-    height: 50px;      /* Must be same as width */
-    border-radius: 50%;
-    overflow: hidden;
-    border: 2px solid #ddd;
-}
+        .profile-circle {
+            width: 50px;
+            /* Change size here */
+            height: 50px;
+            /* Must be same as width */
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid #ddd;
+        }
 
-.profile-circle img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-</style>
+        .profile-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            transition: 0.3s;
+        }
+
+        .card-img-top {
+            height: 180px;
+            object-fit: cover;
+        }
+
+        /* Product Card Hover Effect */
+        .products-section {
+            background-color: #f8f9fa;
+        }
+
+        .section-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header p {
+            color: #6c757d;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .product-card {
+
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s, box-shadow 0.3s;
+            opacity: 0;
+            transform: translateY(40px);
+            animation: fadeInUp 0.6s forwards;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        .product-img {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-img img {
+            width: 100%;
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover .product-img img {
+            transform: scale(1.05);
+        }
+
+        .product-card .badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #ffc107;
+            color: #212529;
+            padding: 0.4rem 0.7rem;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .product-body {
+            padding: 1rem 1.2rem;
+        }
+
+        .product-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+
+        .product-desc {
+            font-size: 0.85rem;
+            color: #6c757d;
+            height: 45px;
+            overflow: hidden;
+        }
+
+        .product-price {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+        }
+
+        .product-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 0.35rem 0.8rem;
+            font-size: 0.85rem;
+            border-radius: 50px;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: #ffc107;
+            color: #212529;
+        }
+
+        .btn-primary:hover {
+            background-color: #e0a800;
+        }
+
+        .btn-outline-secondary {
+            background-color: #fff;
+            border: 1px solid #6c757d;
+            color: #6c757d;
+        }
+
+        .btn-outline-secondary:hover {
+            background-color: #6c757d;
+            color: #fff;
+        }
+
+        /* Entrance Animation */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+
+        .categories-section {
+            background-color: #f8f9fa;
+        }
+
+        .img-box {
+            width: 130px;
+        }
+
+        .category-card {
+            width: 500px;
+            height: 150px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .category-img img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+        }
+
+        .category-content h5 {
+            font-size: 1.2rem;
+        }
+
+        .category-content p {
+            font-size: 0.875rem;
+            color: #6c757d;
+        }
+
+        /* Animation (fadeInUp) */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .wow {
+            animation: fadeInUp 0.7s ease forwards;
+        }
+
+        .wow[data-wow-delay] {
+            animation-delay: var(--wow-delay);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .category-card {
+                flex-direction: row;
+                text-align: left;
+            }
+
+            .category-img img {
+                width: 80px;
+                height: 80px;
+            }
+        }
+        
+    </style>
 </head>
 
 <body>
@@ -142,65 +360,54 @@
                 </div>
             </div>
             <div class="col-md-4 col-lg-3 text-center text-lg-end">
-    <div class="d-inline-flex align-items-center">
+                <div class="d-inline-flex align-items-center">
 
-    {% if request.session.email %}
-        <!-- User Profile -->
-        <a href="{% url 'profile' %}" class="text-muted d-flex flex-column align-items-center justify-content-center me-3">
+                    {% if request.session.email %}
 
-    <div class="profile-circle">
-        <img src="{{ request.session.profile_pic }}" alt="Profile">
-    </div>
 
-    <small class="mt-1 text-dark">{{ user.fname }} {{ user.lname }}</small>
-</a>
+                    <!-- Cart -->
 
-        <!-- Logout -->
-        <a href="{% url 'logout' %}" class="text-muted d-flex flex-column align-items-center justify-content-center me-3">
-            <span class="rounded-circle btn-md-square border d-flex align-items-center justify-content-center p-3">
-                <i class="fas fa-sign-out-alt"></i>
-            </span>
-            <small class="mt-1 text-dark">Logout</small>
-        </a>
+                    <a href="{% url 'wishlist' %}" class="text-muted d-flex flex-column align-items-center justify-content-center">
+                        <span
+                            class="rounded-circle btn-md-square border d-flex align-items-center justify-content-center p-3">
+                            <i class="fas fa-heart"></i>
+                        </span>
+                        <small class="mt-1 text-dark">0</small>
+                    </a>
+                    <a href="#" class="text-muted d-flex flex-column align-items-center justify-content-center ms-3">
+                        <span
+                            class="rounded-circle btn-md-square border d-flex align-items-center justify-content-center p-3">
+                            <i class="fas fa-shopping-cart"></i>
+                        </span>
+                        <small class="mt-1 text-dark">$0.00</small>
+                    </a>
+                    {%else%}
+                    <!-- Sign Up -->
+                    <a href="{% url 'signup' %}"
+                        class="text-muted d-flex flex-column align-items-center justify-content-center me-3">
+                        <span
+                            class="rounded-circle btn-md-square border d-flex align-items-center justify-content-center p-3">
+                            <i class="fas fa-user-plus"></i>
+                        </span>
+                        <small class="mt-1 text-dark">Sign Up</small>
+                    </a>
 
-        <!-- Cart -->
-        <a href="#" class="text-muted d-flex flex-column align-items-center justify-content-center">
-            <span class="rounded-circle btn-md-square border d-flex align-items-center justify-content-center p-3">
-                <i class="fas fa-shopping-cart"></i>
-            </span>
-            <small class="mt-1 text-dark">$0.00</small>
-        </a>
-    {%else%}
-<!-- Sign Up -->
-        <a href="{% url 'signup' %}" class="text-muted d-flex flex-column align-items-center justify-content-center me-3">
-            <span class="rounded-circle btn-md-square border d-flex align-items-center justify-content-center p-3">
-                <i class="fas fa-user-plus"></i>
-            </span>
-            <small class="mt-1 text-dark">Sign Up</small>
-        </a>
+                    <!-- Login -->
+                    <a href="{% url 'login' %}"
+                        class="text-muted d-flex flex-column align-items-center justify-content-center me-3">
+                        <span
+                            class="rounded-circle btn-md-square border d-flex align-items-center justify-content-center p-3">
+                            <i class="fas fa-sign-in-alt"></i>
+                        </span>
+                        <small class="mt-1 text-dark">Login</small>
+                    </a>
 
-        <!-- Login -->
-        <a href="{% url 'login' %}" class="text-muted d-flex flex-column align-items-center justify-content-center me-3">
-            <span class="rounded-circle btn-md-square border d-flex align-items-center justify-content-center p-3">
-                <i class="fas fa-sign-in-alt"></i>
-            </span>
-            <small class="mt-1 text-dark">Login</small>
-        </a>
-
-        
-        <!-- Cart -->
-        <a href="#" class="text-muted d-flex flex-column align-items-center justify-content-center">
-            <span class="rounded-circle btn-md-square border d-flex align-items-center justify-content-center p-3">
-                <i class="fas fa-shopping-cart"></i>
-            </span>
-            <small class="mt-1 text-dark">$0.00</small>
-        </a>
-    {% endif %}
-    </div>
-</div>
+                    {% endif %}
+                </div>
+            </div>
         </div>
     </div>
-    
+
     <!-- Topbar End -->
 
 
@@ -208,51 +415,7 @@
     <!-- Navbar & Hero Start -->
     <div class="container-fluid nav-bar p-0">
         <div class="row gx-0 bg-primary px-5 align-items-center">
-            <div class="col-lg-3 d-none d-lg-block">
-                <nav class="navbar navbar-light position-relative" style="width: 250px;">
-                    <button class="navbar-toggler border-0 fs-4 w-100 px-0 text-start" type="button"
-                        data-bs-toggle="collapse" data-bs-target="#allCat">
-                        <h4 class="m-0"><i class="fa fa-bars me-2"></i>All Categories</h4>
-                    </button>
-                    <div class="collapse navbar-collapse rounded-bottom" id="allCat">
-                        <div class="navbar-nav ms-auto py-0">
-                            <ul class="list-unstyled categories-bars">
-                                <li>
-                                    <div class="categories-bars-item">
-                                        <a href="#">Accessories</a>
-                                        <span>(3)</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="categories-bars-item">
-                                        <a href="#">Electronics & Computer</a>
-                                        <span>(5)</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="categories-bars-item">
-                                        <a href="#">Laptops & Desktops</a>
-                                        <span>(2)</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="categories-bars-item">
-                                        <a href="#">Mobiles & Tablets</a>
-                                        <span>(8)</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="categories-bars-item">
-                                        <a href="#">SmartPhone & Smart TV</a>
-                                        <span>(5)</span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
-            </div>
-            <div class="col-12 col-lg-9">
+            <div class="col-12">
                 <nav class="navbar navbar-expand-lg navbar-light bg-primary ">
                     <a href="" class="navbar-brand d-block d-lg-none">
                         <h1 class="display-5 text-secondary m-0"><i
@@ -263,10 +426,10 @@
                         data-bs-target="#navbarCollapse">
                         <span class="fa fa-bars fa-1x"></span>
                     </button>
-                    <div class="collapse navbar-collapse" id="navbarCollapse">
-                        <div class="navbar-nav ms-auto py-0">
-                            <a href="index.html" class="nav-item nav-link active">Home</a>
-                            <a href="shop.html" class="nav-item nav-link">Shop</a>
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                        <div class="navbar-nav py-0">
+                            <a href="/" class="nav-item nav-link active">Home</a>
+                            <a href="{% url 'all_product' %}" class="nav-item nav-link">All Products</a>
                             <a href="single.html" class="nav-item nav-link">Single Page</a>
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
@@ -278,46 +441,31 @@
                                 </div>
                             </div>
                             <a href="{% url 'contact' %}" class="nav-item nav-link me-2">Contact</a>
-                            <div class="nav-item dropdown d-block d-lg-none mb-3">
-                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">All Category</a>
-                                <div class="dropdown-menu m-0">
-                                    <ul class="list-unstyled categories-bars">
-                                        <li>
-                                            <div class="categories-bars-item">
-                                                <a href="#">Accessories</a>
-                                                <span>(3)</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="categories-bars-item">
-                                                <a href="#">Electronics & Computer</a>
-                                                <span>(5)</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="categories-bars-item">
-                                                <a href="#">Laptops & Desktops</a>
-                                                <span>(2)</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="categories-bars-item">
-                                                <a href="#">Mobiles & Tablets</a>
-                                                <span>(8)</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="categories-bars-item">
-                                                <a href="#">SmartPhone & Smart TV</a>
-                                                <span>(5)</span>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
                         </div>
-                        <a href="" class="btn btn-secondary rounded-pill py-2 px-4 px-lg-3 mb-3 mb-md-3 mb-lg-0"><i
-                                class="fa fa-mobile-alt me-2"></i> +0123 456 7890</a>
+                        {% if request.session.email %}
+                        <div class="pr d-flex align-items-center">
+                            <!-- User Profile -->
+                            <a href="{% url 'profile' %}"
+                                class="text-muted  d-flex flex-column align-items-center justify-content-center me-3">
+
+                                <div class="profile-circle">
+                                    <img src="{{ request.session.profile_pic }}" alt="Profile">
+                                </div>
+
+                                <small class="mt-1 text-white">{{ user.fname }} {{ user.lname }}</small>
+                            </a>
+
+                            <!-- Logout -->
+                            <a href="{% url 'logout' %}" class="text-muted text-white  ms-3">
+                                <span class=" btn-md-square  p-3">
+                                    <small class="mt-1 text-white">Logout</small> &nbsp;
+                                    <i class="fas fa-sign-out-alt text-white mt-1"></i>
+
+                                </span>
+
+                            </a>
+                        </div>
+                        {% endif %}
                     </div>
                 </nav>
             </div>

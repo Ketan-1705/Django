@@ -1,7 +1,7 @@
-{% load static %}
 {% extends 'seller_header.html' %}
+{% load static %}
 
-{% block content %}
+{% block content1 %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,7 +32,7 @@
                 <div class="card shadow-sm border-0 p-4">
 
                     <div class="text-center mb-4">
-                        <img src="{{ user.profile_pic.url }}"
+                        <img src="{{ request.session.profile_pic }}"
                              class="rounded-circle mb-3"
                              width="120" height="120"
                              style="object-fit: cover;">
@@ -54,7 +54,17 @@
 
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" value="{{ user.email }}">
+                            <input type="email" class="form-control" id="email" name="email" value="{{ user.email }}" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="address" class="form-label">Address</label>
+                            <textarea class="form-control" id="address" name="address" rows="3" placeholder="Enter your address" required>{{ user.address }}</textarea>
+                        </div>
+
+                        <!-- Phone Number Field -->
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Phone Number</label>
+                            <input type="text" class="form-control" id="phone" name="phone" value="{{ user.phone }}" placeholder="Enter your phone number" required>
                         </div>
 
                         <div class="mb-3">
@@ -72,15 +82,7 @@
     </div>
 </section>
 
-<!-- ================= FOOTER ================= -->
-<footer class="bg-dark text-white text-center py-4">
-    <div class="container">
-        <p class="mb-0">© 2026 Seller Panel | All Rights Reserved</p>
-    </div>
-</footer>
 
-<!-- Bootstrap JS -->
-<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 </body>
 </html>
 {% endblock %}

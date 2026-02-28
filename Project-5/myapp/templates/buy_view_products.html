@@ -1,0 +1,143 @@
+{% extends 'header.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+  .product-card {
+    max-width: 900px;
+    margin: 2rem auto;
+    background: #fafafa;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(255, 193, 7, 0.25);
+    display: flex;
+    padding: 2rem;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .product-card .product-image img {
+    width: 320px;
+    border-radius: 16px;
+   
+    object-fit: contain;
+  }
+
+  .product-card .product-info {
+    flex: 1;
+  }
+
+  .product-card .product-info h2 {
+    color: #333;
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .category-badge {
+    display: inline-block;
+    background-color: #fff3cd;
+    color: #856404;
+    padding: 0.25rem 0.8rem;
+    font-size: 0.85rem;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    user-select: none;
+  }
+
+  .price {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #f28b00; /* yellow */
+    margin-bottom: 1rem;
+  }
+
+  .description {
+    color: #666;
+    line-height: 1.4;
+    margin-bottom: 2rem;
+  }
+
+  .buttons {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .btn-yellow {
+    background-color: #ffc107;
+    border: none;
+    color: #333;
+    padding: 0.75rem 1.8rem;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+
+
+  .btn-grey {
+    background-color: #e0e0e0;
+    border: none;
+    color: #555;
+    padding: 0.75rem 1.8rem;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn-grey:hover {
+    background-color: #cfcfcf;
+  }
+.product-card {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+}
+  /* Responsive */
+  @media (max-width: 768px) {
+    .product-card {
+      flex-direction: column;
+      padding: 1.5rem;
+    }
+    .product-card .product-info,
+    .product-card .product-image {
+      width: 100%;
+      text-align: center;
+    }
+    .buttons {
+      justify-content: center;
+    }
+  }
+  .btn-my{
+    background-color: #f28b00;
+    border: none;
+    color: #333;
+    padding: 0.75rem 1.8rem;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+</style>
+
+<div class="product-card">
+  <div class="product-image">
+    <img src="{{ product.Product_image.url }}" alt="{{ product.Product_name }}">
+  </div>
+
+  <div class="product-info">
+    <h2>{{ product.Product_name }}</h2>
+    <div class="category-badge">{{ product.Product_category }}</div>
+    <div class="price">₹ {{ product.Product_price }}</div>
+    <p class="description">{{ product.Product_desc }}</p>
+    <div class="buttons">
+        {% if request.session.email %}
+            <a href="" class="btn-yellow btn-my">Add to Cart</a>
+            <a href="{% url 'add_to_wishlist' pid=product.id %}" class="btn-grey">Wishlist</a>
+        {% else %}
+            <a href="{% url 'login' %}" class="btn-yellow btn-my">Login</a>
+        {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}
