@@ -23,4 +23,8 @@ urlpatterns = [
     # path('add_to_cart/<int:pid>/',views.add_to_cart,name='add_to_cart'),
     path('add_to_wishlist/<int:pid>/',views.add_to_wishlist,name='add_to_wishlist'),
     path('wishlist/',views.wishlist,name='wishlist'),
+    path('remove_from_wishlist/<int:pid>/',views.remove_from_wishlist,name='remove_from_wishlist'),
+    path('add_to_cart/<int:pid>/',views.add_to_cart,name='add_to_cart'),
+    path('cart/',views.cart,name='cart'),
+    path('remove_from_cart/<int:pid>/',views.remove_from_cart,name='remove_from_cart'),
     ]

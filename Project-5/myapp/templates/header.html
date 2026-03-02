@@ -372,14 +372,14 @@
                             class="rounded-circle btn-md-square border d-flex align-items-center justify-content-center p-3">
                             <i class="fas fa-heart"></i>
                         </span>
-                        <small class="mt-1 text-dark">0</small>
+                        <small class="mt-1 text-dark">{{request.session.wishlist_count}}</small>
                     </a>
-                    <a href="#" class="text-muted d-flex flex-column align-items-center justify-content-center ms-3">
+                    <a href="{% url 'cart' %}" class="text-muted d-flex flex-column align-items-center justify-content-center ms-3">
                         <span
                             class="rounded-circle btn-md-square border d-flex align-items-center justify-content-center p-3">
                             <i class="fas fa-shopping-cart"></i>
                         </span>
-                        <small class="mt-1 text-dark">$0.00</small>
+                        <small class="mt-1 text-dark">$ {{request.session.cart_count}} </small>
                     </a>
                     {%else%}
                     <!-- Sign Up -->

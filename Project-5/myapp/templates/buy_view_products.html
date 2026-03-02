@@ -132,8 +132,16 @@
     <p class="description">{{ product.Product_desc }}</p>
     <div class="buttons">
         {% if request.session.email %}
-            <a href="" class="btn-yellow btn-my">Add to Cart</a>
-            <a href="{% url 'add_to_wishlist' pid=product.id %}" class="btn-grey">Wishlist</a>
+            {% if cart_flag == False %}
+              <a href="{% url 'add_to_cart' pid=product.id %}" class="btn-yellow btn-my">Add to Cart</a>
+            {% else %}
+                <a href="{% url 'remove_from_cart' pid=product.id %}" class="btn-yellow btn-my">Remove Cart</a>
+            {% endif %}
+            {% if wishlist_flag == False %}
+              <a href="{% url 'add_to_wishlist' pid=product.id %}" class="btn-grey">Wishlist</a>
+            {% else %}
+              <a href="{% url 'remove_from_wishlist' pid=product.id %}" class="btn-grey">Remove from Wishlist</a>
+            {% endif %}
         {% else %}
             <a href="{% url 'login' %}" class="btn-yellow btn-my">Login</a>
         {% endif %}
