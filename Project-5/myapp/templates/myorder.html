@@ -1,0 +1,65 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container-fluid page-header py-5">
+    <h1 class="text-center text-white display-6">My Orders</h1>
+    <ol class="breadcrumb justify-content-center mb-0">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active text-white">Orders</li>
+    </ol>
+</div>
+
+<div class="container py-5">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Qty</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for i in orders %}
+                <tr>
+
+                    <td>
+                        <img src="{{ i.product.Product_image.url }}" style="width:100px;">
+                    </td>
+                        
+                    <td>
+                        {{ i.product.Product_name }}
+                    </td>
+
+                    <td>
+                        {{ i.product.Product_price }}
+                    </td>
+
+                    <td>
+                        {{ i.product_qty }}
+                    </td>
+
+                    <td>
+                        {{ i.total_price }}
+                    </td>
+                    <td>
+                        OK
+                    </td>
+                    <td>
+                        {{ i.date|date:"d M Y H:i" }}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

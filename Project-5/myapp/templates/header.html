@@ -262,7 +262,6 @@
                 height: 80px;
             }
         }
-        
     </style>
 </head>
 
@@ -367,14 +366,24 @@
 
                     <!-- Cart -->
 
-                    <a href="{% url 'wishlist' %}" class="text-muted d-flex flex-column align-items-center justify-content-center">
+                    <a href="{% url 'wishlist' %}"
+                        class="text-muted d-flex flex-column align-items-center justify-content-center">
                         <span
                             class="rounded-circle btn-md-square border d-flex align-items-center justify-content-center p-3">
                             <i class="fas fa-heart"></i>
                         </span>
                         <small class="mt-1 text-dark">{{request.session.wishlist_count}}</small>
                     </a>
-                    <a href="{% url 'cart' %}" class="text-muted d-flex flex-column align-items-center justify-content-center ms-3">
+                    <a href="{% url 'myorder' %}"
+                        class="text-muted d-flex flex-column align-items-center justify-content-center ms-3">
+                        <span
+                            class="rounded-circle btn-md-square border d-flex align-items-center justify-content-center p-3">
+                            <i class="fas fa-box"></i>
+                        </span>
+                        <small class="mt-1 text-dark">My orders</small>
+                    </a>
+                    <a href="{% url 'cart' %}"
+                        class="text-muted d-flex flex-column align-items-center justify-content-center ms-3">
                         <span
                             class="rounded-circle btn-md-square border d-flex align-items-center justify-content-center p-3">
                             <i class="fas fa-shopping-cart"></i>
