@@ -32,5 +32,5 @@ urlpatterns = [
     path('success.html/', views.success,name='success'),
     path('cancel.html/', views.cancel,name='cancel'),
     path('myorder/',views.myorder,name='myorder'),
-    
+    path('new_password/',views.new_password,name='new_password'),
     ]

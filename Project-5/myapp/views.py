@@ -1,3 +1,4 @@
+
 from django.shortcuts import render,redirect
 from .models import User,Product,Wishlist,Cart
 import random
@@ -93,7 +94,21 @@ def logout(request):
 def contact(request):
     return render(request,'contact.html',)
 def forgot_password(request):
-    return render(request,'forgot_password.html',)
+    if request.method=='POST':
+        try:
+            user=User.objects.get(email=request.POST['email'])
+            otp=random.randint(100000,999999)
+            subject='Forgot Password OTP'
+            message='Your OTP is :' +str(otp)
+            send_mail(subject,message,settings.EMAIL_HOST_USER,[user.email,])
+            request.session['otp']=otp
+            request.session['email2']=user.email
+            return render(request,'otp.html')
+        except:
+            msg='Email Not Found'
+            return render(request,'forgot_password.html',{'msg':msg})
+    else:
+        return render(request,'forgot_password.html',)
 def profile(request):
     try:
         user=User.objects.get(email=request.session['email'])
@@ -116,9 +131,53 @@ def profile(request):
     except:
         return render(request,'index.html')
 def otp(request):
-    return render(request,'otp.html',)
+    otp1=int(request.POST['otp'])
+    otp2=request.session['otp']
+    if otp1==otp2:
+        msg='OTP verified successfully..'
+        return render(request,'new_password.html',{'msg':msg})
+    else:
+        msg='OTP verified successfully..'
+        return render(request,'otp.html',{'msg':msg})
+def new_password(request):
+    if request.POST['new_password']==request.POST['c_new_password']:
+        user=User.objects.get(email=request.session['email2'])
+        if user.password!=request.POST['new_password']:
+            user.password=request.POST['new_password']
+            user.save()
+            del request.session['email2']
+            msg='Your password change successfully Please login again..'
+            return render(request,'login.html',{'msg':msg})
+        else:
+            msg='New Password and Courent Password Both are Same'
+            return render(request,'new_password.html',{'msg':msg})
+    else:
+        msg="New password and conform New password Both are same..."
+        return render(request,'new_password.html')
 def change_password(request):
-    return render(request,'change_password.html',)
+    if request.method=='POST':
+        user=User.objects.get(email=request.session['email'])
+        if user.password==request.POST['old_password']:
+            if request.POST['new_password']==request.POST['c_new_passwoed']:
+                if user.password!=request.POST['new_password']:
+                    user.password=request.POST['new_password']
+                    user.save()
+                    del request.session['email']
+                    
+                    msg='Password Changed Successfully.Please login again..'
+                    return render(request,'login.html',{'msg':msg})
+                else:
+                    msg='New Password and Courent Password Both are Same'
+                    return render(request,'change_password.html',{'msg':msg})
+            else:
+                msg='Password And Conform Password does not match...'
+                return render(request,'change_password.html',{'msg':msg})
+        else:
+            msg='Invalid Old Password..'
+            return render(request,'change_password.html',{'msg':msg})
+    else:
+        return render(request,'change_password.html')
+    
 def seller_index(request):
     user = User.objects.get(email=request.session['email'])
     return render(request,'seller_index.html',{'user':user})

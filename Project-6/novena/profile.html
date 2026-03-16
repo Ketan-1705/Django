@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Client Dashboard</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        body {
+            background: #f4f6fb;
+            font-family: 'Segoe UI', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* SIDEBAR */
+
+        .sidebar {
+            width: 80px;
+            height: 100vh;
+            background: #223a66;
+            position: fixed;
+            left: 0;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 20px;
+            z-index: 1000;
+            transition: 0.3s;
+        }
+
+        .sidebar i {
+            font-size: 20px;
+            margin: 22px 0;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .sidebar i:hover {
+            color: #0d6efd;
+        }
+
+        /* CLOSE BUTTON */
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 22px;
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        /* MAIN AREA */
+
+        .main {
+            margin-left: 80px;
+            width: calc(100% - 80px);
+            padding-top: 80px;
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+
+        /* TOP NAVBAR */
+
+        .top-header {
+            background: #223a66;
+            position: fixed;
+            top: 0;
+            left: 80px;
+            width: calc(100% - 80px);
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 999;
+        }
+
+        .search-box {
+            width: 250px;
+        }
+
+        .user-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: #fff;
+        }
+
+        .user-section img {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+        }
+
+        /* PROFILE */
+
+        .profile-card {
+            background: #fff;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .profile-card img {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+        }
+
+        /* STAT CARDS */
+
+        .stat-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        /* TABLE */
+
+        .table-box {
+            background: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        /* MOBILE MENU BUTTON */
+
+        .mobile-toggle {
+            display: none;
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width:768px) {
+
+            .sidebar {
+                left: -80px;
+            }
+
+            .sidebar.active {
+                left: 0;
+            }
+
+            .close-btn {
+                display: block;
+            }
+
+            .top-header {
+                left: 0;
+                width: 100%;
+            }
+
+            .main {
+                margin-left: 0;
+                width: 100%;
+                padding-top: 90px;
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .search-box {
+                width: 150px;
+            }
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+
+    <div class="sidebar" id="sidebar">
+
+        <button class="close-btn" onclick="toggleSidebar()">
+            <i class="fa fa-xmark"></i>
+        </button>
+
+        <i class="fa fa-home"></i>
+        <i class="fa fa-calendar"></i>
+        <i class="fa fa-user"></i>
+        <i class="fa fa-file"></i>
+        <i class="fa fa-cog"></i>
+
+    </div>
+
+    <!-- TOP NAVBAR -->
+
+    <div class="top-header">
+
+        <div class="d-flex align-items-center gap-3">
+
+            <button class="btn btn-light mobile-toggle" onclick="toggleSidebar()">
+                <i class="fa fa-bars"></i>
+            </button>
+
+
+
+        </div>
+
+        <div class="user-section">
+
+
+
+            <img src="https://randomuser.me/api/portraits/women/65.jpg">
+
+            <span>Harriet</span>
+
+            <a class="btn btn-danger btn-sm d-flex align-items-center gap-2 logout-btn">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Logout
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- MAIN CONTENT -->
+
+    <div class="main">
+
+        <div class="container-fluid px-0">
+
+            <div class="row g-4">
+
+                <!-- PROFILE -->
+
+                <div class="col-lg-3 col-md-6">
+
+                    <div class="profile-card">
+
+                        <img src="https://randomuser.me/api/portraits/women/65.jpg">
+
+                        <h5>Harriet Nunez</h5>
+
+                        <p class="text-muted">Marketing Manager</p>
+
+                        <button class="btn btn-primary btn-sm mb-3">
+                            Edit User Account
+                        </button>
+
+                        <hr>
+
+                        <p class="text-muted small">Email</p>
+                        <p>harriet@gmail.com</p>
+
+                        <p class="text-muted small">Phone</p>
+                        <p>+91 9876543210</p>
+
+                    </div>
+
+                </div>
+
+                <!-- RIGHT SIDE -->
+
+                <div class="col-lg-9">
+
+                    <!-- STATS -->
+
+                    <div class="row g-3 mb-4">
+
+                        <div class="col-xl-4 col-md-6">
+
+                            <div class="stat-card">
+                                <div class="stat-number text-primary">5</div>
+                                <p class="text-muted">Bookings</p>
+                            </div>
+
+                        </div>
+
+                        <div class="col-xl-4 col-md-6">
+
+                            <div class="stat-card">
+                                <div class="stat-number text-success">2</div>
+                                <p class="text-muted">Completed</p>
+                            </div>
+
+                        </div>
+
+                        <div class="col-xl-4 col-md-12">
+
+                            <div class="stat-card">
+                                <div class="stat-number text-danger">5</div>
+                                <p class="text-muted">Cancelled</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- TABLE -->
+
+                    <div class="table-box">
+
+                        <h5 class="mb-3">Appointments</h5>
+
+                        <div class="table-responsive">
+
+                            <table class="table">
+
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Service</th>
+                                        <th>Status</th>
+                                        <th>Price</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+
+                                    <tr>
+                                        <td>29</td>
+                                        <td>Plumbing</td>
+                                        <td><span class="badge bg-danger">Cancelled</span></td>
+                                        <td>$50</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>18</td>
+                                        <td>Carpentry</td>
+                                        <td><span class="badge bg-success">Booked</span></td>
+                                        <td>$65</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>15</td>
+                                        <td>Painting</td>
+                                        <td><span class="badge bg-success">Done</span></td>
+                                        <td>$30</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>13</td>
+                                        <td>Hair Styling</td>
+                                        <td><span class="badge bg-success">Done</span></td>
+                                        <td>$40</td>
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        function toggleSidebar() {
+            document.getElementById("sidebar").classList.toggle("active");
+        }
+
+    </script>
+
+</body>
+
+</html>
