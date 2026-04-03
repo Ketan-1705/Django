@@ -124,9 +124,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
+
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 
+<<<<<<< HEAD:Assessment/Modul-16/edutracker/settings.py
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
@@ -144,3 +146,16 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10,
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
 }
+=======
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'goswamiketan026@gmail.com'
+EMAIL_HOST_PASSWORD = 'boph aapz afvn ftzz'
+MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+STRIPE_PUBLIC_KEY='pk_test_51T90JcHCKK6whnBeC4FobLdARVS8ONXovDg7RoPQ4PxzTLSIuXqwLLzY2R7jSbTez3Eh1dzKpA68FQaQfmpwsGsv00m7fIghU2'
+STRIPE_PRIVATE_KEY='sk_test_51T90JcHCKK6whnBeAUHXQyq4GaKArWKm86vaVzjsz86o52I77Fd1WE5HaCSsl8HlbUBfiJaIwR68uqsONXc99KKB001Od8WhGn'
+>>>>>>> 961e9454490eb612af6c45869ed06e24aece6183:Project-5/mysite/settings.py
