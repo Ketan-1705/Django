@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}EduTracker{% endblock %}</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob primary"></div>
+        <div class="blob secondary"></div>
+    </div>
+    <nav class="glass-navbar">
+        <div class="nav-container">
+            <a href="{% url 'index' %}" class="nav-brand">
+                <span class="gradient-text">EduTracker</span>
+            </a>
+            <div class="nav-links">
+                <a href="{% url 'courses_list' %}" class="nav-link">Courses</a>
+                <a href="{% url 'students_list' %}" class="nav-link">Students</a>
+                {% if user.is_authenticated %}
+                    <span style="color: var(--text-muted); opacity: 0.5;">|</span>
+                    <span style="color: var(--text-main); font-weight: 500;">Hi, {{ user.first_name }} ({% if user.profile %}{{ user.profile.role|title }}{% else %}Admin{% endif %})</span>
+                    <a href="{% url 'logout' %}" class="nav-link" style="color: #fca5a5;">Logout</a>
+                {% else %}
+                    <span style="color: var(--text-muted); opacity: 0.5;">|</span>
+                    <a href="{% url 'login' %}" class="nav-link">Login</a>
+                    <a href="{% url 'signup' %}" class="btn-primary" style="padding: 0.4rem 1rem; background: linear-gradient(135deg, var(--secondary), var(--primary)); color: white; border-radius: 6px; text-decoration: none; font-size: 0.9rem;">Sign Up</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="glass-footer">
+        <p>&copy; 2026 EduTracker Solutions. All rights reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}EduTracker | Courses{% endblock %}
+
+{% block content %}
+<div class="page-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+    <div>
+        <h1 class="section-title" style="margin-bottom: 0.5rem;">All <span class="gradient-text">Courses</span></h1>
+        <p class="hero-subtitle" style="margin-bottom: 0;">Browse our complete list of educational programs.</p>
+    </div>
+    {% if user.is_authenticated and user.profile and user.profile.role == 'faculty' %}
+    <a href="{% url 'add_course' %}" class="btn-primary" style="padding: 0.75rem 1.5rem; background: linear-gradient(135deg, var(--secondary), var(--primary)); color: white; text-decoration: none; border-radius: 8px; font-weight: 600; transition: opacity 0.3s ease;">+ Add Course</a>
+    {% endif %}
+</div>
+
+<div class="grid-container">
+    {% for course in courses %}
+    <div class="glass-card course-card">
+        <h3 class="card-title">{{ course.title }}</h3>
+        <p class="card-desc">{{ course.description }}</p>
+        <div class="card-footer" style="padding-bottom: 1rem; border-bottom: 1px solid var(--glass-border); margin-bottom: 1rem; border-top: none;">
+            <span class="badge">{{ course.students.count }} Students</span>
+            <span class="date">{{ course.created_at|date:"M d, Y" }}</span>
+        </div>
+        {% if user.is_authenticated %}
+            <div style="display: flex; gap: 0.5rem; justify-content: flex-end;">
+            {% if user.profile.role == 'student' %}
+                <a href="{% url 'enroll_course' course.id %}" style="padding: 0.5rem 1rem; background: rgba(6, 182, 212, 0.2); border: 1px solid var(--secondary); color: var(--secondary); text-decoration: none; border-radius: 6px; font-size: 0.85rem; font-weight: 600;">Enroll</a>
+            {% elif user.profile.role == 'faculty' %}
+                <a href="{% url 'delete_course' course.id %}" style="padding: 0.5rem 1rem; background: rgba(220, 38, 38, 0.2); border: 1px solid #ef4444; color: #fca5a5; text-decoration: none; border-radius: 6px; font-size: 0.85rem; font-weight: 600;">Delete</a>
+            {% endif %}
+            </div>
+        {% endif %}
+    </div>
+    {% empty %}
+    <div class="glass-panel" style="padding: 2rem; border-radius: 12px;">
+        <p class="empty-state" style="color: var(--text-muted);">No courses available.</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

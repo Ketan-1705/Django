@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}EduTracker | Dashboard{% endblock %}
+
+{% block content %}
+<div class="hero-section glass-panel">
+    <h1 class="hero-title">Empower Your Learning with <span class="gradient-text">EduTracker</span></h1>
+    <p class="hero-subtitle">The modern way to manage courses and students interactively.</p>
+    <div class="stats-container">
+        <div class="stat-card">
+            <h3>{{ total_courses }}</h3>
+            <p>Active Courses</p>
+        </div>
+        <div class="stat-card">
+            <h3>{{ total_students }}</h3>
+            <p>Enrolled Students</p>
+        </div>
+    </div>
+</div>
+
+<div class="recent-section">
+    <h2 class="section-title">Recently Added Courses</h2>
+    <div class="grid-container">
+        {% for course in recent_courses %}
+        <div class="glass-card course-card">
+            <h3 class="card-title">{{ course.title }}</h3>
+            <p class="card-desc">{{ course.description|truncatewords:15 }}</p>
+            <div class="card-footer">
+                <span class="date">{{ course.created_at|date:"M d, Y" }}</span>
+            </div>
+        </div>
+        {% empty %}
+        <p class="empty-state">No courses added yet.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
